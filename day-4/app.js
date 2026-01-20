@@ -75,7 +75,7 @@ function generateNumberFromWholeAndFractionalArrays(whole, fraction) {
   return wholePart + fractionPart;
 }
 console.log(generateNumberFromWholeAndFractionalArrays([1, 2], [3, 2]));
-
+/****************************** Question#6*****************************/
 // CHECK A NUMBER IS PALINDROM 0R NOT
 function isPalindrom(number) {
   let numberCopy = number;
@@ -92,6 +92,7 @@ function isPalindrom(number) {
   return reverseNumber === number;
 }
 console.log(isPalindrom(121));
+/****************************** Question#7 *****************************/
 // CHECK IS A NUMBER ARMSTRONG OR NOT
 function isArmStrong(number) {
   let numberCopy = number;
@@ -109,3 +110,108 @@ function isArmStrong(number) {
 }
 console.log(isArmStrong(153));
 console.log(isArmStrong(143));
+/*************************************ASSIGNMENTS ********************************/
+//ASSIGNMENT 1
+function sumOfTheDigits(number) {
+  const digitsArray = [];
+  while (number > 0) {
+    digitsArray.unshift(number % 10);
+    number = Math.floor(number / 10);
+  }
+  const sum = digitsArray.reduce((acc, cur) => acc + cur, 0);
+  return sum;
+}
+console.log(sumOfTheDigits(123));
+//ASSIGNMENT 2
+function averageOfDigits(number) {
+  const digitsArray = [];
+  while (number > 0) {
+    digitsArray.unshift(number % 10);
+    number = Math.floor(number / 10);
+  }
+  const sum = digitsArray.reduce((acc, cur) => acc + cur, 0);
+  return sum / digitsArray.length;
+}
+console.log(averageOfDigits(123));
+//ASSIGNMENT 3
+function findLargestAndSmallest(number) {
+  const digitsArray = [];
+  while (number > 0) {
+    digitsArray.unshift(number % 10);
+    number = Math.floor(number / 10);
+  }
+  const sortedArray = digitsArray.sort((a, b) => a - b);
+  return {
+    smallest: sortedArray[0],
+    largest: sortedArray[sortedArray.length - 1],
+  };
+}
+//ASSIGNMENT 4
+function isStrong(number) {
+  const originalNumber = number;
+  const digitsArray = [];
+  while (number > 0) {
+    digitsArray.unshift(number % 10);
+    number = Math.floor(number / 10);
+  }
+  let digitsFactorialSum = 0;
+  digitsArray.forEach((val, index) => {
+    let factorial = 1;
+    for (let i = 1; i <= val; i++) {
+      factorial *= i;
+    }
+    digitsFactorialSum += factorial;
+  });
+
+  return digitsFactorialSum == originalNumber;
+}
+//ASSIGNMENT 5
+function isAutomphoric(number) {
+  let square = number ** 2;
+  let automorphic;
+  while (number > 0) {
+    if (number % 10 === square % 10) {
+      automorphic = true;
+      number = Math.floor(number / 10);
+      square = Math.floor(square / 10);
+    } else {
+      automorphic = false;
+      break;
+    }
+  }
+  return automorphic;
+}
+console.log(isAutomphoric(6));
+console.log(isAutomphoric(4));
+//ASSIGNEMNT 6
+function findFrequencyOfEachDigit(number) {
+  const digitsArray = [];
+  while (number > 0) {
+    digitsArray.unshift(number % 10);
+    number = Math.floor(number / 10);
+  }
+  let frequencyObj = {};
+  digitsArray.forEach((val) => {
+    if (frequencyObj[val]) {
+      frequencyObj[val]++;
+    } else {
+      frequencyObj[val] = 1;
+    }
+  });
+  return frequencyObj;
+}
+//ASSIGNMENT 7
+function isHarshad(number) {
+  let originalNumber = number;
+  let digitsArray = [];
+  while (number > 0) {
+    digitsArray.unshift(number % 10);
+    number = Math.floor(number / 10);
+  }
+  const sumOfDigits = digitsArray.reduce((acc, cur) => acc + cur, 0);
+  return originalNumber % sumOfDigits === 0;
+}
+console.log(isHarshad(36));
+console.log(isHarshad(18));
+console.log(isHarshad(45));
+console.log(isHarshad(72));

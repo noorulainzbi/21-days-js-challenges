@@ -104,3 +104,82 @@ function calculateLCM(num1, num2) {
   return (num1 * num2) / divisor;
 }
 console.log(calculateLCM(12, 16));
+
+/********************************* ASSIGNMENTS ********************************/
+//ASSIGNMENT 1: calculate the number of factors of a number
+function getNumberOfFactors(number) {
+  const factors = [1, number];
+  for (let i = 2; i <= Math.sqrt(number); i++) {
+    if (number % i === 0) {
+      factors.splice(factors.length / 2, 0, i);
+      let otherFactor = number / i;
+      if (i !== otherFactor)
+        factors.splice(factors.length / 2 + 1, 0, otherFactor);
+    }
+  }
+  return { factors, totalFactors: factors.length };
+}
+console.log(getNumberOfFactors(12));
+//ASSIGNMENT 2: calculate the sum of factors of a number
+function getSumOfFactors(number) {
+  const factors = [1, number];
+  for (let i = 2; i <= Math.sqrt(number); i++) {
+    if (number % i === 0) {
+      factors.splice(factors.length / 2, 0, i);
+      let otherFactor = number / i;
+      if (i !== otherFactor)
+        factors.splice(factors.length / 2 + 1, 0, otherFactor);
+    }
+  }
+  return factors.reduce((acc, cur) => acc + cur, 0);
+}
+console.log(getSumOfFactors(12));
+//ASSIGNMENT 3: find the greatest factor of a number other than itself
+function getGreatestFactor(number) {
+  const factors = [1, number];
+  for (let i = 2; i <= Math.sqrt(number); i++) {
+    if (number % i === 0) {
+      factors.splice(factors.length / 2, 0, i);
+      let otherFactor = number / i;
+      if (i !== otherFactor)
+        factors.splice(factors.length / 2 + 1, 0, otherFactor);
+    }
+  }
+  return factors[factors.length - 2];
+}
+console.log(getGreatestFactor(12));
+// ASSIGNMENT 4: find the proper divisor
+function getProperDivisors(number) {
+  const factors = [];
+  for (let i = 1; i <= Math.sqrt(number); i++) {
+    if (number % i === 0) {
+      factors.splice(factors.length / 2 + 1, 0, i);
+      let otherFactor = number / i;
+      if (i !== otherFactor && otherFactor !== number)
+        factors.splice(factors.length / 2 + 1, 0, otherFactor);
+    }
+  }
+  return factors;
+}
+console.log(getProperDivisors(12));
+console.log([1].length / 2 + 2);
+// ASSIGNMENT 5: find the HCF and LCM of three numbers
+function getHCFAndLCMOfThreeNumbers(num1, num2, num3) {
+  let dividend = num1 > num2 ? num1 : num2;
+  let divisor = num1 > num2 ? num2 : num1;
+  while (dividend % divisor !== 0) {
+    let remainder = dividend % divisor;
+    dividend = divisor;
+    divisor = remainder;
+  }
+  divisor = num3 > divisor ? divisor : num3;
+  dividend = num3 > divisor ? num3 : divisor;
+  while (dividend % divisor !== 0) {
+    let remainder = dividend % divisor;
+    dividend = divisor;
+    divisor = remainder;
+  }
+  
+  return { HCF: divisor };
+}
+console.log(getHCFAndLCMOfThreeNumbers(4, 8, 12));
